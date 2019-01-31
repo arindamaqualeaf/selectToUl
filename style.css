@@ -1,0 +1,111 @@
+*{
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body{
+    color: #291515;
+    font-family: 'Open Sans', sans-serif;
+}
+.container{
+    max-width: 1170px;
+    padding-left: 15px;
+    padding-right: 15px;  
+    margin: 0 auto;  
+}
+.row{
+    margin-right: -15px;
+    margin-left: -15px;    
+    display: flex;
+    flex-wrap: wrap;
+}
+.container::after, .row::after, .container::before, .row::before{
+    content: "";
+    display: table;
+}
+.container::after, .row::after{
+    clear: both;
+}
+.a-col{
+    width: 25%;
+    flex: 0 0 25%;
+}
+
+svg{
+    width: 70%;
+}
+.gear{
+    /* fill:var(--gearFill) !important; */
+    cursor: pointer;
+}
+.leftSide{
+    flex: 0 0 50%;    
+    width: 50%;
+    position: relative;
+    padding: 15px
+}
+.leftSide::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 100%;
+    background: #666;
+}
+.preview{
+    flex: 0 0 50%;
+    width: 50%;
+}
+.editorContainer{
+    display: flex;
+    background: #444444;
+    height: 100vh;
+}
+.Mainheading h2{
+    font-size: 16px;
+}
+select.ariConverter{
+    display: none;
+}
+.selectWrap{
+    width: 100%;
+    background: #037260;
+    color: #ffffff;
+    position: relative;
+    float: left;
+}
+.selectWrap .instedSelectOption{
+ width: 100%;
+ display: none;
+ display: none;
+ position: absolute;
+ top: 100%;
+ left: 0px;
+ background: rgb(34, 34, 34);
+}
+.instedSelectOption li{
+    margin-bottom: 10px;
+    cursor: pointer;
+
+}
+.listIcon{
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+}
+.listIcon i{
+    -moz-transition: all ease-in-out 300ms;
+    -webkit-transition: all ease-in-out 300ms;
+    -o-transition: all ease-in-out 300ms;
+    transition: all ease-in-out 300ms;
+}
+.listIcon.rotate i{
+    transform: rotate(-180deg);
+}   

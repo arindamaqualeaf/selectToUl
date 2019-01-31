@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800" rel="stylesheet">
+    <link rel="stylesheet" href="jquery-ui.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="a-col">
+                <select class="ariConverter">
+                    <option value="1">abcd</option>
+                    <option value="2">abcsdfsdfd</option>
+                    <option value="3">Arindam</option>
+                    <option value="4">Sarkar</option>
+                    <option value="5">sAsldfj</option>
+                    <option value="2">abcsdfsdfd</option>
+                    <option value="3">Arindam</option>
+                    <option value="4">Sarkar</option>
+                    <option value="5">sAsldfj</option>
+                </select>
+            </div>
+            <div class="a-col">
+                <select class="ariConverter">
+                    <option value="1">abcd</option>
+                    <option value="2">abcsdfsdfd</option>
+                    <option value="3">Arindam</option>
+                    <option value="4">Sarkar</option>
+                    <option value="5">sAsldfj</option>
+                    <option value="2">abcsdfsdfd</option>
+                    <option value="3">Arindam</option>
+                    <option value="4">Sarkar</option>
+                    <option value="5">sAsldfj</option>
+                </select>
+            </div>
+            <div id="myid"></div>
+            <div id="myid1"></div>
+            <div id="myid2"></div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script>
+        $.fn.mycustomfunction = function (arg) {
+            $(this).html(arg);
+
+        }
+
+        $('#myid').mycustomfunction('html');
+        $('#myid1').mycustomfunction('css');
+        $('#myid2').mycustomfunction('jquery');
+
+        // Dropdrawn icon 
+        var iconInDropdrawn = '<i class="fa fa-angle-down"></a>';
+        //icons in span li
+        var icons = ['<i class="fa fa-plane"></i>', '<i class="fa fa-send"></i>', '<i class="fa fa-angle-left"></i>'];
+
+
+
+
+
+        //creating crosponding ul li
+        $('.ariConverter').find("option").each(function (index) {
+            if (index == 0) {
+                $(this).parent().after('<div class="selectWrap"><ul class="instedSelectOption"><\/ul><div class="selectedItem">----Select--</div></div>');
+            }
+            var liText = $(this).text();
+            if (icons[index] == undefined || icons[index] == null) {
+                var temp = "";
+            } else {
+                var temp = icons[index];
+            }
+            $(this).parent().siblings('.selectWrap').find('.instedSelectOption').append('<li>' + liText + temp + "</li>");
+        });
+        $('.selectedItem').after("<span class='listIcon'>" + iconInDropdrawn + "</span>");
+        // $('.selectedItem').after("<span class='listIcon'>"+iconInDropdrawn+"</span>");
+
+        // click events 
+        $('.selectedItem').on('click', function () {
+            $('.instedSelectOption').slideToggle('fast');
+            $('.listIcon').toggleClass('rotate');
+        });
+        $('.instedSelectOption li').on('click', function () {
+            $('.selectedItem').text($(this).text());
+            $('.instedSelectOption').slideUp('fast');
+            $('.listIcon').removeClass('rotate');
+        });
+    </script>
+
+</body>
+
+</html>
