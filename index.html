@@ -17,7 +17,7 @@
     <div class="container">
         <div class="row">
             <div class="a-col">
-                <select class="ariConverter">
+                <select id="ariConverter" class="ariConverter">
                     <option value="1">abcd</option>
                     <option value="2">abcsdfsdfd</option>
                     <option value="3">Arindam</option>
@@ -31,7 +31,7 @@
             </div>
             <div class="a-col">
                 <select class="ariConverter">
-                    <option value="1">abcd</option>
+                    <option value="1">Mithun</option>
                     <option value="2">abcsdfsdfd</option>
                     <option value="3">Arindam</option>
                     <option value="4">Sarkar</option>
@@ -49,50 +49,55 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script>
-        $.fn.mycustomfunction = function (arg) {
-            $(this).html(arg);
-
-        }
-
-        $('#myid').mycustomfunction('html');
-        $('#myid1').mycustomfunction('css');
-        $('#myid2').mycustomfunction('jquery');
-
-        // Dropdrawn icon 
-        var iconInDropdrawn = '<i class="fa fa-angle-down"></a>';
-        //icons in span li
-        var icons = ['<i class="fa fa-plane"></i>', '<i class="fa fa-send"></i>', '<i class="fa fa-angle-left"></i>'];
-
-
-
-
-
-        //creating crosponding ul li
-        $('.ariConverter').find("option").each(function (index) {
-            if (index == 0) {
-                $(this).parent().after('<div class="selectWrap"><ul class="instedSelectOption"><\/ul><div class="selectedItem">----Select--</div></div>');
+        $.fn.selUlLI = function (arg) {
+            var element = $(this);
+            element.after('<div class="selectWrap"><ul class="instedSelectOption"><\/ul><div class="selectedItem">----Select--</div></div>');
+            var iconInDropdrawn = arg.parentIcon;
+            var icons = arg.childIcon;
+            var cb = "";
+            var labelStart = "";
+            var labelEnd = "";
+            if (arg.checkbox === true) {
+                cb = '<input id="checkbox2" class="styled" type="checkbox">';
+                labelStart = '<label for="checkbox2">';
+                labelEnd = '</label>';
             }
-            var liText = $(this).text();
-            if (icons[index] == undefined || icons[index] == null) {
-                var temp = "";
-            } else {
-                var temp = icons[index];
-            }
-            $(this).parent().siblings('.selectWrap').find('.instedSelectOption').append('<li>' + liText + temp + "</li>");
-        });
-        $('.selectedItem').after("<span class='listIcon'>" + iconInDropdrawn + "</span>");
-        // $('.selectedItem').after("<span class='listIcon'>"+iconInDropdrawn+"</span>");
 
-        // click events 
-        $('.selectedItem').on('click', function () {
-            $('.instedSelectOption').slideToggle('fast');
-            $('.listIcon').toggleClass('rotate');
+
+            //creating crosponding ul li
+            element.find("option").each(function (index) {
+                var liText = $(this).text();
+                if (icons[index] == undefined || icons[index] == null) {
+                    var temp = "";
+                } else {
+                    var temp = icons[index];
+                }
+                $(this).parent().siblings('.selectWrap').find('.instedSelectOption').append('<li>' + cb + labelStart + liText + labelEnd + '<span class="liIcon">' + temp + '</span>' + "</li>");
+            });
+            $('.selectedItem').after("<span class='listIcon'>" + iconInDropdrawn + "</span>");
+
+
+            // click events 
+            $('.selectedItem').on('click', function () {
+                $(this).siblings('.instedSelectOption').slideToggle('fast');
+                $(this).siblings('.listIcon').toggleClass('rotate');
+            });
+            $('.instedSelectOption li').on('click', function () {
+                $(this).closest('.instedSelectOption').siblings('.selectedItem').text($(this).text());
+                $(this).closest('.instedSelectOption').slideUp('fast');
+                $('.listIcon').removeClass('rotate');
+            });
+        }       
+    </script>
+
+    <script>
+        $('.ariConverter').selUlLI({
+            parentIcon: '<i class="fa fa-angle-down"></a>',
+            childIcon: ['<i class="fa fa-plane"></i>', '<i class="fa fa-send"></i>', '<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-left"></i>'],
+            checkbox: true,
+
         });
-        $('.instedSelectOption li').on('click', function () {
-            $('.selectedItem').text($(this).text());
-            $('.instedSelectOption').slideUp('fast');
-            $('.listIcon').removeClass('rotate');
-        });
+
     </script>
 
 </body>

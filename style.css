@@ -10,6 +10,10 @@ body{
     color: #291515;
     font-family: 'Open Sans', sans-serif;
 }
+ul{
+    list-style: none;
+}
+
 .container{
     max-width: 1170px;
     padding-left: 15px;
